@@ -1,9 +1,23 @@
 
 PROJECT_ID:="bug-party-dev"
 
-terraform-init:
-	gcloud storage buckets create gs://bug-party-tfstate --project ${PROJECT_ID}
-	terraform init
+TF_COMMAND := docker run -i -t -v $(shell pwd)/terraform/:/workspace \
+  -w /workspace -v ~/.config/gcloud:/root/.config/gcloud \
+  -e TF_VAR_project="$PROJECT_ID" \
+  hashicorp/terraform:1.5.0
 
+.PHONY: terraform-create-backend
+terraform-create-backend:
+	gcloud storage buckets create gs://bug-party-tfstate --project ${PROJECT_ID}
+
+.PHONY: terraform-init
+terraform-init:
+	$(TF_COMMAND) init
+
+.PHONY: terraform-apply
 terraform-apply:
-	echo "TODO"
+	$(TF_COMMAND) apply
+
+.PHONY: terraform-output
+terraform-output:
+	$(TF_COMMAND) output
