@@ -3,4 +3,5 @@ run these commands:
 ```
 gcloud auth login
 gcloud auth application-default login
+gcloud components install gke-gcloud-auth-plugin
 ```

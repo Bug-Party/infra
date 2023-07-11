@@ -1,4 +1,6 @@
-To set up a brand new environment, run the following commands:
+To set up a brand new environment in an otherwise empty gcp project ... 
+
+1. run the following commands:
 ```
-make erraform-create-backend terraform-init terraform-apply
+make terraform-create-backend terraform-init terraform-apply
 ```

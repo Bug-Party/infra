@@ -61,6 +61,26 @@ resource "google_artifact_registry_repository" "registry" {
   format        = "DOCKER"
 }
 
+# this is the kubernetes cluster that will run our game
+
+resource "google_container_cluster" "primary" {
+  name     = "bug-server-dev"
+  location = "us-east1-b"
+  
+  # # We can't create a cluster with no node pool defined, but we want to only use
+  # # separately managed node pools. So we create the smallest possible default
+  # # node pool and immediately delete it.
+  # remove_default_node_pool = true
+  initial_node_count       = 1
+
+  node_config {
+    disk_size_gb = 50
+  }
+}
+
+
+# outputs ...
+
 output workload_identity_pool_provider {
   value = google_iam_workload_identity_pool_provider.provider.name
 }
