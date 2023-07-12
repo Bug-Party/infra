@@ -8,4 +8,4 @@ Prerequesites (note: you might not need all of these immediately)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 - [helm](https://helm.sh/docs/intro/install/)
 
-Instructions for various operations tasks can be found in (docs/runbooks)[./docs/runbooks]
+Instructions for various operations tasks can be found in [docs/runbooks](./docs/runbooks)

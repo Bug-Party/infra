@@ -1,4 +1,4 @@
-1. follow the instructions to get [gcloud cli](./docs/runbooks/gcloud_setup.md) installed
+1. follow the instructions to get [gcloud cli](./gcloud_setup.md) installed
 
 2. run this command to configure kubernetes context
 ```
