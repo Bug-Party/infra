@@ -70,9 +70,9 @@ resource "google_container_cluster" "primary" {
 
   node_config {
     disk_size_gb = 50
+    machine_type = "e2-micro"
   }
 }
-
 
 # outputs ...
 

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sleep-container
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sleep-container
+  template:
+    metadata:
+      labels:
+        app: sleep-container
+    spec:
+      containers:
+        - name: sleep
+          image: alpine:latest
+          command: ["sleep", "3600"]
