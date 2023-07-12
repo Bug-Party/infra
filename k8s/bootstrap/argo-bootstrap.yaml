@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: bug-party
+  namespace: argocd
 spec:
   destination:
     namespace: default
@@ -11,3 +12,10 @@ spec:
     path: k8s/resources
     repoURL: https://github.com/Bug-Party/infra.git
     targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - Validate=false

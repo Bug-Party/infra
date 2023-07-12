@@ -8,9 +8,12 @@ TF_COMMAND := docker run -i -t -v $(shell pwd)/terraform/:/workspace \
 
 .PHONY: install-argocd
 install-argocd:
-	kubectl create namespace argocd
 	helm repo add argo https://argoproj.github.io/argo-helm
 	helm upgrade --install -n argocd argocd argo/argo-cd --version 5.38.1
+
+.PHONY: bootstrap-argocd
+bootstrap-argocd:
+	kubectl apply -f k8s/bootstrap/argo-bootstrap.yaml
 
 .PHONY: terraform-create-backend
 terraform-create-backend:
