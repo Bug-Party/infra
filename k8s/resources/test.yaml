@@ -15,5 +15,5 @@ spec:
     spec:
       containers:
         - name: sleep
-          image: alpine:latest
+          image: us-east1-docker.pkg.dev/bug-party-dev/bug-party-dev/game-server:v0.1.0
           command: ["sleep", "3600"]
