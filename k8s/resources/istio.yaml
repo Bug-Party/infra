@@ -62,6 +62,11 @@ spec:
     targetRevision: 1.18.1
     helm:
       releaseName: istio-ingress
+    values: |
+      resources:
+        requests:
+          cpu: 50m
+          memory: 64Mi
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
