@@ -9,3 +9,8 @@ make terraform-create-backend terraform-init terraform-apply
 ```
 make install-argocd
 ```
+
+3. sync argo deployments for istio
+```
+TODO -- add the commands to do this
+```

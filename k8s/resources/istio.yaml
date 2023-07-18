@@ -19,3 +19,25 @@ spec:
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: istiod-helm
+  namespace: argocd
+spec:
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: istio-system
+  project: default
+  source:
+    chart: istiod
+    repoURL: https://istio-release.storage.googleapis.com/charts
+    targetRevision: 1.18.1
+    helm:
+      releaseName: istiod
+      values: |
+        requests: {}
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
