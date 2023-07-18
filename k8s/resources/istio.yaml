@@ -9,11 +9,13 @@ spec:
     namespace: istio-system
   project: default
   source:
-    chart: istio-base
+    chart: istio/base
     repoURL: https://istio-release.storage.googleapis.com/charts
     targetRevision: 1.18.1
     helm:
       releaseName: istio-base
+      values:
+        defaultRevision: default
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
