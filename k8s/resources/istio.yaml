@@ -37,10 +37,11 @@ spec:
     helm:
       releaseName: istiod
       values: |
-        resources:
-          requests:
-            cpu: 50m
-            memory: 64Mi
+        pilot:
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
