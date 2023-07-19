@@ -66,11 +66,24 @@ resource "google_artifact_registry_repository" "registry" {
 resource "google_container_cluster" "primary" {
   name     = "bug-server-dev"
   location = "us-east1-b"
-  initial_node_count       = 1
+  initial_node_count = 1
+  remove_default_node_pool = true
+
+  logging_service = "none"
+  monitoring_service = "none"
+}
+
+resource "google_container_node_pool" "node_pool" {
+  name = "node-pool-01"
+  cluster = google_container_cluster.primary.id
+
+  autoscaling {
+    min_node_count = 1
+    max_node_count = 3
+  }
 
   node_config {
-    disk_size_gb = 50
-    machine_type = "e2-micro"
+    machine_type = "e2-small"
   }
 }
 

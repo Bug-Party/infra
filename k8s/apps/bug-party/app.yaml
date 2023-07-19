@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+ApiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sleep-container
@@ -15,5 +15,5 @@ spec:
     spec:
       containers:
         - name: sleep
-          image: us-east1-docker.pkg.dev/bug-party-dev/bug-party-dev/game-server:v0.1.1
+          image: us-east1-docker.pkg.dev/bug-party-dev/bug-party-dev/game-server:v0.1.0
           command: ["sleep", "3600"]

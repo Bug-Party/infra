@@ -9,13 +9,10 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: k8s/resources
+    path: k8s/apps/bug-party
     repoURL: https://github.com/Bug-Party/infra.git
     targetRevision: HEAD
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
     syncOptions:
     - CreateNamespace=true
     - Validate=false

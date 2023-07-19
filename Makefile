@@ -13,7 +13,11 @@ install-argocd:
 
 .PHONY: bootstrap-argocd
 bootstrap-argocd:
-	kubectl apply -f k8s/bootstrap/argo-bootstrap.yaml
+	kubectl apply -f k8s/argo
+
+.PHONY: uninstall-argocd
+uninstall-argocd:
+	helm uninstall -n argocd argocd
 
 .PHONY: terraform-create-backend
 terraform-create-backend:
