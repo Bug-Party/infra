@@ -18,5 +18,5 @@ spec:
           image: us-east1-docker.pkg.dev/bug-party-dev/bug-party-dev/game-server:v0.1.2
           command: ["sleep", "3600"]
           env: 
-          - key: "hello"
+          - name: "hello"
             value: "world"
