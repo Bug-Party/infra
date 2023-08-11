@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prometheus-helm
+  name: grafana-helm
   namespace: argocd
 spec:
   destination:
@@ -9,11 +9,11 @@ spec:
     namespace: observability
   project: default
   source:
-    chart: prometheus
-    repoURL: https://prometheus-community.github.io/helm-charts
-    targetRevision: 23.3.0
+    chart: grafana
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 6.58.8
     helm:
-      releaseName: prometheus
+      releaseName: grafana
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
