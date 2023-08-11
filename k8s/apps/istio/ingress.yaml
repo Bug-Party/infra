@@ -14,6 +14,7 @@ spec:
       protocol: HTTP
     hosts:
     - api.bugparty.net
+    - grafana.bugparty.net
     - prometheus.bugparty.net
 ---
 apiVersion: networking.istio.io/v1alpha3
@@ -48,3 +49,20 @@ spec:
         host: prometheus-server.observability.svc.cluster.local
         port:
           number: 80 
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: grafana
+spec:
+  hosts:
+  - grafana.bugparty.net
+  gateways:
+  - istio-system/my-gateway
+  http:
+  - name: grafana
+    route:
+    - destination:
+        host: grafana.observability.svc.cluster.local
+        port:
+          number: 80
