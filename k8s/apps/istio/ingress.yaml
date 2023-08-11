@@ -13,6 +13,7 @@ spec:
       protocol: HTTP
     hosts:
     - api.bugparty.net
+    - prometheus.bugparty.net
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -29,3 +30,20 @@ spec:
       status: 200
       body:
         string: "Future Home of the bug-party API"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: prometheus
+spec:
+  hosts:
+  - prometheus.bugparty.net
+  gateways:
+  - istio-ingress/my-gateway
+  http:
+  - name: prometheus
+    route:
+    - destination:
+        host: prometheus.observability.svc.cluster.local
+        port:
+          number: 80 

@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus-helm
+  namespace: argocd
+spec:
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: observability
+  project: default
+  source:
+    chart: prometheus
+    repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: 23.3.0
+    helm:
+      releaseName: prometheus
+      # values: |
+      #   server:
+      #     resources:
+      #       requests:
+      #         cpu: 50m
+      #         memory: 64Mi
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
