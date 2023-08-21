@@ -34,3 +34,10 @@ terraform-apply:
 .PHONY: terraform-output
 terraform-output:
 	$(TF_COMMAND) output
+
+.PHONY: get-grafana-password
+get-grafana-creds:
+	echo username:
+	kubectl get secret --namespace observability grafana -o jsonpath="{.data.admin-user}" | base64 --decode ; echo
+	echo password:
+	kubectl get secret --namespace observability grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
