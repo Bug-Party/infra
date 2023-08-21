@@ -15,8 +15,7 @@ spec:
     helm:
       releaseName: grafana
       values: |
-        plugins:
-        - grafana-kubernetes-app
+        plugins: grafana-kubernetes-app
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
