@@ -19,4 +19,4 @@ spec:
           command: ["sleep", "3600"]
           env: 
           - name: "hello"
-            value: "world"
+            value: "world2"
