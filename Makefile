@@ -11,8 +11,13 @@ install-argocd:
 	helm repo add argo https://argoproj.github.io/argo-helm
 	helm upgrade --install -n argocd argocd argo/argo-cd --version 5.38.1
 
+.PHONY: rebuild-dashboards
+rebuild-dashboards:
+	rm ./k8s/apps/grafana/dashboards/generated/*
+	kustomize build ./k8s/apps/grafana/dashboards/ --output ./k8s/apps/grafana/dashboards/generated/dashboards.yaml
+
 .PHONY: bootstrap-argocd
-bootstrap-argocd:
+bootstrap-argocd: rebuild-dashboards
 	kubectl apply -f k8s/argo
 
 .PHONY: uninstall-argocd

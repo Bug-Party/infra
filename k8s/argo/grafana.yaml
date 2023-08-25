@@ -24,7 +24,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: grafana-dashboards
-  namespace: observability
+  namespace: argocd
 spec:
   destination:
     server: "https://kubernetes.default.svc"
@@ -32,7 +32,5 @@ spec:
   project: default
   source:
     repoURL: "https://github.com/Bug-Party/infra"
-    path: "k8s/apps/grafana/dashboards"
+    path: "k8s/apps/grafana/dashboards/generated"
     targetRevision: HEAD
-    kustomize:
-      version: v3.8.7
