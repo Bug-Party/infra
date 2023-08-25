@@ -1,0 +1,3 @@
+[submodule "k8s/apps/grafana/dashboards/grafana-dashboards-kubernetes"]
+	path = k8s/apps/grafana/dashboards/grafana-dashboards-kubernetes
+	url = git@github.com:dotdc/grafana-dashboards-kubernetes.git
