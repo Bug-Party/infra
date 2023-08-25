@@ -9178,4 +9178,5 @@ data:
     }
 kind: ConfigMap
 metadata:
-  name: grafana-dashboards-24b5f4k6km
+  name: grafana-dashboards
+  namespace: observability

@@ -13,7 +13,8 @@ install-argocd:
 
 .PHONY: rebuild-dashboards
 rebuild-dashboards:
-	rm ./k8s/apps/grafana/dashboards/generated/*
+	rm -r ./k8s/apps/grafana/dashboards/generated/
+	mkdir -p ./k8s/apps/grafana/dashboards/generated/
 	kustomize build ./k8s/apps/grafana/dashboards/ --output ./k8s/apps/grafana/dashboards/generated/dashboards.yaml
 
 .PHONY: bootstrap-argocd
