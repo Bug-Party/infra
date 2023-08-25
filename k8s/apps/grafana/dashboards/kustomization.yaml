@@ -7,7 +7,7 @@ configmapGenerator:
     - ./grafana-dashboards-kubernetes/dashboards/k8s-views-pods.json
     - ./grafana-dashboards-kubernetes/dashboards/k8s-views-nodes.json
     - ./grafana-dashboards-kubernetes/dashboards/k8s-views-global.json
-    - ./grafana-dashboards-kubernetes/dashboards/k8s-system-coredns.json
-    - ./grafana-dashboards-kubernetes/dashboards/k8s-views-namespaces.json
-    - ./grafana-dashboards-kubernetes/dashboards/k8s-addons-prometheus.json
-    - ./grafana-dashboards-kubernetes/dashboards/k8s-system-api-server.json
+      #- ./grafana-dashboards-kubernetes/dashboards/k8s-system-coredns.json
+      #- ./grafana-dashboards-kubernetes/dashboards/k8s-views-namespaces.json
+      #- ./grafana-dashboards-kubernetes/dashboards/k8s-addons-prometheus.json
+      #- ./grafana-dashboards-kubernetes/dashboards/k8s-system-api-server.json
