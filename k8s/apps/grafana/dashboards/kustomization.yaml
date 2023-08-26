@@ -8,6 +8,12 @@ configmapGenerator:
   - ./grafana-dashboards-kubernetes/dashboards/k8s-views-pods.json
   - ./grafana-dashboards-kubernetes/dashboards/k8s-views-nodes.json
   - ./grafana-dashboards-kubernetes/dashboards/k8s-views-global.json
+- name: grafana-dashboards-2
+  namespace: observability
+  files:
+  - ./grafana-dashboards-kubernetes/dashboards/k8s-system-api-server.json
+  - ./grafana-dashboards-kubernetes/dashboards/k8s-views-namespaces.json
+  - ./grafana-dashboards-kubernetes/dashboards/k8s-addons-prometheus.json
 
 generatorOptions:
   disableNameSuffixHash: true
