@@ -16,7 +16,3 @@ spec:
       containers:
         - name: sleep
           image: us-east1-docker.pkg.dev/bug-party-dev/bug-party-dev/game-server:v0.2.3
-          command: ["sleep", "3600"]
-          env: 
-          - name: "hello"
-            value: "world2"

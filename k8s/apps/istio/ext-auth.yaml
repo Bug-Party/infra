@@ -1,0 +1,13 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: example-auth-policy
+spec:
+  action: CUSTOM
+  provider:
+    name: "oauth2-proxy"
+  rules:
+  - to:
+    - operation:
+        hosts:
+        - "prometheus.bugparty.net"
