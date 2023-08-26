@@ -1,7 +1,8 @@
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
-  name: example-auth-policy
+  name: auth-policy
+  namespace: istio-system
 spec:
   action: CUSTOM
   provider:
