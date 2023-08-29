@@ -46,8 +46,8 @@ spec:
           extensionProviders:
           - name: "oauth2-proxy"
             envoyExtAuthzHttp:
-              service: "ouath-proxy-oauth2-proxy.istio-system.svc.cluster.local"
-              port: "4180" 
+              service: oauth-proxy-oauth2-proxy.istio-system.svc.cluster.local
+              port: "80" 
               includeHeadersInCheck:
               - authorizationcookie
               - cookie 

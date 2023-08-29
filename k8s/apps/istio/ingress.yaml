@@ -14,6 +14,7 @@ spec:
       protocol: HTTP
     hosts:
     - api.bugparty.net
+    - auth.bugparty.net
     - grafana.bugparty.net
     - prometheus.bugparty.net
 ---
@@ -64,5 +65,22 @@ spec:
     route:
     - destination:
         host: grafana.observability.svc.cluster.local
+        port:
+          number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: extauth
+spec:
+  hosts:
+  - auth.bugparty.net
+  gateways:
+  - istio-system/my-gateway
+  http:
+  - name: extauth 
+    route:
+    - destination:
+        host: oauth-proxy-oauth2-proxy.istio-system.svc.cluster.local
         port:
           number: 80
