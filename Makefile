@@ -47,3 +47,12 @@ get-grafana-creds:
 	kubectl get secret --namespace observability grafana -o jsonpath="{.data.admin-user}" | base64 --decode ; echo
 	echo password:
 	kubectl get secret --namespace observability grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+
+
+.PHONY: get-argocd-creds
+get-argocd-creds:
+	argocd -n argocd admin initial-password
+
+.PHONY: port-fwd-argo
+port-fwd-argo:
+	kubectl -n argocd port-forward service/argocd-server 18080:80

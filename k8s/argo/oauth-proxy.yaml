@@ -17,7 +17,7 @@ spec:
       values: |
         config:
           clientID: 8d511eb2aedc6a92e7df
-          clientSecret: f9de6cfadffb7e3c2957918e6e906e055a2e0aa2
+          clientSecret: ff0cc02766c9906d8e2a5ace7792c49cadf20e15
           cookieSecret: ZlE3VzZLbFNndWRudEpjTGgxY2tpejc1cW04eTlId1U=
         extraArgs:
           cookie-domain: "*.bugparty.net"
