@@ -19,6 +19,8 @@ kind: Certificate
 metadata:
   name: ingress-cert
   namespace: istio-system
+  annotations:
+    cert-manager.io/issue-temporary-certificate: "true"
 spec:
   secretName: ingress-cert-stage
   issuerRef:
