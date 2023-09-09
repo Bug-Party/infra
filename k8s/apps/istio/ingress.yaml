@@ -17,6 +17,8 @@ spec:
     - auth.bugparty.net
     - grafana.bugparty.net
     - prometheus.bugparty.net
+    tls:
+      httpsRedirect: true
   - port:
       number: 443
       name: https
