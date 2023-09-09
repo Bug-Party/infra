@@ -1,1 +1,15 @@
-# TODO
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-stage
+  namespace: istio-system
+spec:
+  acme:
+    email: albert.lockett@gmail.com
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-stage
+    solvers:
+    - http01:
+        ingress:
+          class: istio
