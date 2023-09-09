@@ -13,3 +13,20 @@ spec:
     - http01:
         ingress:
           class: istio
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ingress-cert
+  namespace: istio-system
+spec:
+  secretName: ingress-cert-stage
+  issuerRef:
+    name: letsencrypt-stage
+    kind: ClusterIssuer
+  # commonName: 
+  dnsNames:
+  - api.bugparty.net
+  - auth.bugparty.net
+  - grafana.bugparty.net
+  - prometheus.bugparty.net
