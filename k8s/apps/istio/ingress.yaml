@@ -17,8 +17,8 @@ spec:
     - auth.bugparty.net
     - grafana.bugparty.net
     - prometheus.bugparty.net
-    tls:
-      httpsRedirect: true
+    # tls:
+    #   httpsRedirect: true
   - port:
       number: 443
       name: https
@@ -30,7 +30,7 @@ spec:
     - prometheus.bugparty.net
     tls:
       mode: SIMPLE
-      credentialName: ingress-cert
+      credentialName: ingress-cert-stage
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -42,6 +42,15 @@ spec:
   gateways:
   - istio-system/my-gateway
   http:
+  - name: cert-challenge
+    match:
+    - uri:
+        prefix: /.well-known/acme-challenge
+    route:
+    - destination:
+        host: cm-acme-http-solver-sxs55.istio-system.svc.cluster.local
+        port:
+          number: 8089
   - name: direct-response
     directResponse:
       status: 200

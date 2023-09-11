@@ -54,5 +54,5 @@ get-argocd-creds:
 	argocd -n argocd admin initial-password
 
 .PHONY: port-fwd-argo
-port-fwd-argo:
+port-fwd-argo: get-argocd-creds
 	kubectl -n argocd port-forward service/argocd-server 18080:80
