@@ -35,6 +35,33 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
+  name: cm-challenge-solver
+spec:
+  hosts:
+  - api.bugparty.net
+  - auth.bugparty.net
+  - grafana.bugparty.net
+  - prometheus.bugparty.net
+  gateways:
+  - istio-system/my-gateway
+  http:
+  - name: cm-challenge-solver
+    match:
+    - uri:
+        prefix: /.well-known/acme-challenge
+    route:
+    - destination:
+        host: cm-challenge-solvers.istio-system.svc.cluster.local
+        port:
+          number: 8089
+    retries:
+      attempts: 5
+      perTryTimeout: 2s
+      retryOn: 503,404
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
   name: placeholder
 spec:
   hosts:
@@ -42,15 +69,6 @@ spec:
   gateways:
   - istio-system/my-gateway
   http:
-  - name: cert-challenge
-    match:
-    - uri:
-        prefix: /.well-known/acme-challenge
-    route:
-    - destination:
-        host: cm-acme-http-solver-sxs55.istio-system.svc.cluster.local
-        port:
-          number: 8089
   - name: direct-response
     directResponse:
       status: 200

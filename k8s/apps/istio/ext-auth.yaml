@@ -12,3 +12,5 @@ spec:
     - operation:
         hosts:
         - "prometheus.bugparty.net"
+        notPaths:
+        - "/.well-known/acme-challenge/*"

@@ -13,6 +13,23 @@ spec:
     - http01:
         ingress:
           class: istio
+          podTemplate:
+            metadata:
+              labels:
+                cm-challenge: "true"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cm-challenge-solvers
+  namespace: istio-system
+spec:
+  selector:
+    cm-challenge: "true"
+  ports:
+  - name: http
+    port: 8089
+    targetPort: 8089
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
@@ -29,9 +46,9 @@ spec:
   # commonName: 
   dnsNames:
   - api.bugparty.net
-  # - auth.bugparty.net
-  # - grafana.bugparty.net
-  # - prometheus.bugparty.net
+  - auth.bugparty.net
+  - grafana.bugparty.net
+  - prometheus.bugparty.net
 ---
 # required for the http 01 challenge
 apiVersion: networking.k8s.io/v1
