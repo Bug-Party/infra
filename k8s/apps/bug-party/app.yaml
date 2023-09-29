@@ -33,3 +33,44 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8080
+---
+# TODO -- need to productionize this
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bugparty-redis
+  namespace: default
+labels:
+  app: bugparty-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bugparty-redis
+  template:
+    metadata:
+      labels:
+        app: bugparty-redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:6.2.5
+        ports:
+        - containerPort: 6379
+        # TODO add resouce limits etc.
+        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bugparty-redis
+  namespce: default
+  labels:
+    app: bugparty-redis
+spec:
+  selector:
+    app: bugparty-redis
+  ports:
+    - protocol: TCP
+      port: 6379
+      targetPort: 6379
