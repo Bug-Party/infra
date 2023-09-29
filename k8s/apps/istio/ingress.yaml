@@ -75,7 +75,7 @@ spec:
     - destination:
         host: bugparty-game-server.default.svc.cluster.local
         port:
-          number: 8080
+          number: 80
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
