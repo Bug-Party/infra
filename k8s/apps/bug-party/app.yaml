@@ -39,7 +39,7 @@ spec:
       port: 80
       targetPort: 8080
 ---
-# TODO -- need to productionize this
+# TODO -- need to productionize this see github.com/Bug-Party/infra/issues/13
 apiVersion: apps/v1
 kind: Deployment
 metadata:

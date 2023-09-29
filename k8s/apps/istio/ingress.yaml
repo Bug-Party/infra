@@ -63,7 +63,7 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: placeholder
+  name: game-server
 spec:
   hosts:
   - api.bugparty.net
@@ -76,6 +76,18 @@ spec:
         host: bugparty-game-server.default.svc.cluster.local
         port:
           number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: game-server
+spec:
+  host: bugparty-game-server.default.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      consistentHash:
+        httpHeaderName: x-lobby-key
+        maglev: {}
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
