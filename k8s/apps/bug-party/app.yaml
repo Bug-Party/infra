@@ -16,6 +16,11 @@ spec:
       containers:
         - name: game-server
           image: us-east1-docker.pkg.dev/bug-party-dev/bug-party-dev/game-server:v0.2.3
+          env:
+          - name: DB_HOST
+            value: "bugparty-redis.default.svc.cluster.local"
+          - name: PERSIST_GAME_STATE
+            value: "true"
           ports:
           - containerPort: 8080
 ---
