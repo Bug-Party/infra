@@ -9,7 +9,7 @@ TF_COMMAND := docker run -i -t -v $(shell pwd)/terraform/:/workspace \
 .PHONY: install-argocd
 install-argocd:
 	helm repo add argo https://argoproj.github.io/argo-helm
-	helm upgrade --install -n argocd argocd argo/argo-cd --version 5.38.1
+	helm upgrade --install -n argocd argocd argo/argo-cd --version 5.38.1 -f ./k8s/argo-helm-values.yaml
 
 .PHONY: rebuild-dashboards
 rebuild-dashboards:

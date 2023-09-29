@@ -1,14 +1,14 @@
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
-  name: letsencrypt-stage
+  name: letsencrypt-prod
   namespace: istio-system
 spec:
   acme:
     email: albert.lockett@gmail.com
-    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
-      name: letsencrypt-stage
+      name: letsencrypt-prod
     solvers:
     - http01:
         ingress:
@@ -36,25 +36,17 @@ kind: Certificate
 metadata:
   name: ingress-cert
   namespace: istio-system
+  # -- todo, this might mess w/ SDS and cert rotation
+  # when troubleshooting future erros, can remove this?
   annotations:
     cert-manager.io/issue-temporary-certificate: "true"
 spec:
-  secretName: ingress-cert-stage
+  secretName: ingress-cert-prod
   issuerRef:
-    name: letsencrypt-stage
+    name: letsencrypt-prod
     kind: ClusterIssuer
-  # commonName: 
   dnsNames:
   - api.bugparty.net
   - auth.bugparty.net
   - grafana.bugparty.net
   - prometheus.bugparty.net
----
-# required for the http 01 challenge
-apiVersion: networking.k8s.io/v1
-kind: IngressClass
-metadata:
-  name: istio
-  namespace: istio-system
-spec:
-  controller: istio.io/ingress-controller

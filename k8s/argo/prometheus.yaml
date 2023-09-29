@@ -14,6 +14,13 @@ spec:
     targetRevision: 23.3.0
     helm:
       releaseName: prometheus
+      values: |
+        server:
+          resources:
+            limits:
+              memory: 300Mi
+            requests:
+              memory: 128Mi
   syncPolicy:
     syncOptions:
     - CreateNamespace=true

@@ -17,8 +17,9 @@ spec:
     - auth.bugparty.net
     - grafana.bugparty.net
     - prometheus.bugparty.net
-    # tls:
-    #   httpsRedirect: true
+    # TODO -- may need to turn this off when rotating certs
+    tls:
+      httpsRedirect: true
   - port:
       number: 443
       name: https
@@ -30,7 +31,7 @@ spec:
     - prometheus.bugparty.net
     tls:
       mode: SIMPLE
-      credentialName: ingress-cert-stage
+      credentialName: ingress-cert-prod
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -70,10 +71,11 @@ spec:
   - istio-system/my-gateway
   http:
   - name: direct-response
-    directResponse:
-      status: 200
-      body:
-        string: "Future Home of the bug-party API"
+    route:
+    - destination:
+        host: bugparty-game-server.default.svc.cluster.local
+        port:
+          number: 8080
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
